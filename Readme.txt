@@ -3,6 +3,7 @@ Archivo:
 main.py: Código principal de la app. Es el archivo que debe correrse en python.
 Biohackers.exe: Ejecutable que no requiere instalanción de librerías.
 
+Liga para el ejecutable:
 https://drive.google.com/file/d/1RkeNICVjWcWo4OeYQrxx-JFwldyborp-/view?usp=sharing
 
 my.kv: Definiciones para la interfaz de kivy
