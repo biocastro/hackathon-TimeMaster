@@ -1,0 +1,523 @@
+WindowManager:
+    MainWindow:
+    MedicoWindow:
+    ClinicaWindow:
+    DesarrolladorWindow:  
+    PacientesWindow:
+    PacientesDesWindow:
+    RegistroWindow:
+    DiagnosticoWindow:
+    Email:
+    
+<Button>:
+    font_size: 30
+
+<Label>:
+    font_size: 30 
+    
+<CustomPopup>:
+    size_hint: .5, .5
+    auto_dismiss: False
+    title: ""
+    Button:
+        text: "Datos enviados correctamente \nClick para cerrar"
+        on_press: root.dismiss()  
+        
+<CustomPopup2>:
+    size_hint: .5, .5
+    auto_dismiss: False
+    title: ""
+    Button:
+        text: "Clave de acceso incorrecta \nClick para cerrar"
+        on_press: root.dismiss()    
+
+<MainWindow>:
+    name: "main"
+
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 100
+        spacing: 30
+            
+        Label:
+            text: "Selecciona tu tipo de usuario: "
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+
+        Button:            
+                        
+            text: "Medico"
+            
+            on_release:
+                app.root.current = "medico"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            
+            text: "Clinica"
+            
+            on_release:
+                app.root.current = "clinica"
+                root.manager.transition.direction = "left"
+                
+        Button:            
+            
+            text: "Desarrollador"
+            
+            on_release:
+                app.root.current = "desarrollador"
+                root.manager.transition.direction = "left"
+                
+<MedicoWindow>:
+    name: "medico"
+    passw1: passw1
+    
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 100
+        spacing: 30
+        
+        Label:
+            text: "Menu para medico"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Ingrese clave de acceso: "
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: passw1
+                multiline: False
+                password: True
+
+        Button:
+            text: "Entrar"
+            on_press:
+                app.root.current = "pacientes" if passw1.text == "medico" else root.open_popup()
+                app.root.current = "pacientes" if passw1.text == "medico" else "medico"
+                root.manager.transition.direction = "left" 
+            on_release: 
+                root.cleartext()              
+            
+                    
+        Button:
+            text: "Regresar al inicio"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+                
+
+<ClinicaWindow>:
+    name: "clinica"
+    passw2: passw2
+
+    GridLayout:
+        rows: 5
+        cols: 1
+        padding: 100
+        spacing: 30
+        
+        Label:
+            text: "Menu para clinica"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Ingrese clave de acceso: "
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: passw2
+                multiline: False
+                password: True
+
+        Button:
+            text: "Entrar"
+            on_press:
+                app.root.current = "registro" if passw2.text == "clinica" else root.open_popup()
+                app.root.current = "registro" if passw2.text == "clinica" else "clinica"
+                root.manager.transition.direction = "left"
+            on_release: 
+                root.cleartext()
+                
+        Button:
+            text: "Regresar al inicio"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+                
+
+<DesarrolladorWindow>:
+    name: "desarrollador"
+    passw3: passw3
+
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 100
+        spacing: 30
+        
+        Label:
+            text: "Menu para desarrollador"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Ingrese clave de acceso: "
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: passw3
+                multiline: False
+                password: True
+
+        Button:
+            text: "Entrar"
+            on_press:
+                app.root.current = "pacientesdes" if passw3.text == "desarrollador" else root.open_popup()
+                app.root.current = "pacientesdes" if passw3.text == "desarrollador" else "desarrollador"
+                root.manager.transition.direction = "left"
+            on_release: 
+                root.cleartext()
+
+        Button:
+            text: "Regresar al inicio"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+
+<PacientesWindow>:
+    name: "pacientes"
+    
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 100
+        spacing: 30
+        
+        Label:
+            text: "Informacion de pacientes"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                
+        Button:
+            text: "Ver lista de pacientes"
+            on_release: root.graph()
+                
+        Button:
+            text: "Agregar diagnostico"
+            on_release:
+                app.root.current = "diagnostico"
+                root.manager.transition.direction = "left"
+                
+
+        Button:
+            text: "Regresar"
+            on_release:
+                app.root.current = "medico"
+                root.manager.transition.direction = "right"
+                
+                
+<PacientesDesWindow>:
+    name: "pacientesdes"
+    
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 100
+        spacing: 30
+        
+        
+        Label:
+            text: "Lista de pacientes"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                
+        Button:
+            text: "Ver lista de pacientes"
+            on_release: root.graph()
+                
+
+        Button:
+            text: "Enviar datos por correo"
+            on_release:
+                app.root.current = "email"
+                root.manager.transition.direction = "left"
+                
+
+        Button:
+            text: "Regresar"
+            on_release:
+                app.root.current = "desarrollador"
+                root.manager.transition.direction = "right"
+                
+
+<RegistroWindow>:
+    name: "registro"
+    
+    id_data: id_data
+    age_data: age_data
+    bmi_data: bmi_data
+    ins_data: ins_data
+    k_data: k_data
+    neu_data: neu_data
+    
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 50
+        spacing: 2
+        
+        Label:
+            text: "Ingrese los datos del paciente"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                    
+        GridLayout:
+            rows: 6
+            cols: 2
+                
+            Label:
+                text: "Numero de seguro social: "
+                font_size: 15
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: id_data
+                multiline: False
+                
+                
+                
+            Label:
+                text: "Edad: "
+                font_size: 15
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: age_data
+                multiline: False
+                
+                
+            Label:
+                text: "Indice de Masa Corporal: "
+                font_size: 15
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: bmi_data
+                multiline: False
+                
+                
+                
+            Label:
+                text: "Insulina: "
+                font_size: 15
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: ins_data
+                multiline: False
+                
+                
+                
+            Label:
+                text: "Celulas K: "
+                font_size: 15
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: k_data
+                multiline: False
+                
+                
+            Label:
+                text: "Neutrofilos: "
+                font_size: 15
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: neu_data
+                multiline: False
+                
+        
+        Button:
+            text: "Enviar datos"
+            on_press: 
+                root.write()
+            on_release: 
+                root.cleartext()
+            on_release: 
+                root.open_popup()
+                
+        Button:
+            text: "Regresar"
+            on_release:
+                app.root.current = "clinica"
+                root.manager.transition.direction = "right"
+ 
+                
+<DiagnosticoWindow>:
+    name: "diagnostico"
+    
+    pac_data: pac_data
+    diag_data: diag_data
+    
+    
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 100
+        spacing: 30
+        
+        Label:
+            text: "Ingrese el diagnostico"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                    
+        GridLayout:
+            rows: 2
+            cols: 2
+            
+            
+            Label:
+                text: "Numero de seguro social del paciente: "
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: pac_data
+                multiline: False
+            
+                    
+            Label:
+                text: "Diagnostico: "
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+
+            TextInput:
+                id: diag_data
+                multiline: False
+        
+        Button:
+            text: "Enviar diagnostico"
+            on_press: 
+                root.diagnosis()
+            on_release: 
+                root.cleartext()
+            on_release: 
+                root.open_popup()
+                    
+        Button:
+            text: "Regresar"
+            on_release:
+                app.root.current = "pacientes"
+                root.manager.transition.direction = "right"
+
+                 
+<Email>:
+    name: "email"
+    
+    mail_data: mail_data
+
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 100
+        spacing: 30
+        
+        Label:
+            text: "Ingrese su correo electronico"
+            color: 0,0,0,1 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1 
+            
+        GridLayout: 
+            rows: 1
+            cols: 2
+            
+            Label:
+                text: "Correo: "
+                color: 0,0,0,1 
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                        
+            TextInput:
+                id: mail_data
+                multiline: False
+                
+        Button:
+            text: "Enviar por correo"
+            on_press: 
+                root.mail()  
+            on_release: 
+                root.cleartext() 
+            on_release: 
+                root.open_popup()             
+            
+        Button:
+            text: "Regresar"
+            on_release:
+                app.root.current = "pacientesdes"
+                root.manager.transition.direction = "right" 
